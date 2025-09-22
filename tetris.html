@@ -5,81 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Neon Tetris</title>
 <style>
-html,body{
-  height:100%;margin:0;background:#05050a;color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  font-family:"Consolas","Noto Sans TC",sans-serif;
-  -webkit-user-select:none;user-select:none;
-  -webkit-touch-callout:none;
-  -webkit-text-size-adjust:none;
-  touch-action:manipulation;
-  overflow:hidden;
-}
-.app{
-  aspect-ratio:1/1;
-  width:min(95vmin,600px);
-  background:#111;
-  border-radius:20px;
-  box-shadow:0 0 25px #0ff,0 0 40px #f0f,0 0 60px #ff0;
-  display:flex;flex-direction:column;
-  overflow:hidden;
-}
+html,body{height:100%;margin:0;background:#05050a;color:#fff;display:flex;align-items:center;justify-content:center;font-family:"Consolas","Noto Sans TC",sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-text-size-adjust:none;touch-action:manipulation;overflow:hidden;}
+.app{aspect-ratio:1/1;width:min(95vmin,600px);background:#111;border-radius:20px;box-shadow:0 0 25px #0ff,0 0 40px #f0f,0 0 60px #ff0;display:flex;flex-direction:column;overflow:hidden;}
 .top{flex:1;display:flex;}
 .left{flex:2;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .right{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding:10px;}
-.boardWrapper{
-  border:6px solid transparent;border-radius:10px;
-  border-image:linear-gradient(135deg,#0ff,#f0f,#ff0,#0f0,#08f,#f44,#4ff,#ff80bf) 1;
-}
+.boardWrapper{border:6px solid transparent;border-radius:10px;border-image:linear-gradient(135deg,#0ff,#f0f,#ff0,#0f0,#08f,#f44,#4ff,#ff80bf) 1;}
 canvas#board{background:#000;display:block;border-radius:6px;width:100%;height:auto;}
 .hud{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:6px;}
-button{
-  background:#111;
-  border:2px solid transparent;
-  border-radius:10px;
-  color:#0ff;
-  padding:8px 12px;
-  font-weight:bold;
-  cursor:pointer;
-  text-shadow:0 0 6px #0ff;
-  transition:all .2s ease;
-  -webkit-tap-highlight-color: transparent;
-  background-image:
-    linear-gradient(#111,#111),
-    linear-gradient(90deg,#0ff,#f0f,#ff0,#0f0,#08f,#f44,#4ff,#ff80bf);
-  background-origin:border-box;
-  background-clip:padding-box,border-box;
-  box-shadow:0 0 12px #0ff inset,0 0 12px #0ff;
-}
-button:hover{
-  background:#000;
-  color:#fff;
-  text-shadow:0 0 10px #fff;
-  box-shadow:0 0 20px #0ff,0 0 30px #f0f,0 0 40px #ff0;
-}
-button:active{
-  transform:scale(0.9);
-  box-shadow:inset 0 0 15px #0ff, inset 0 0 25px #f0f;
-  color:#0ff;
-}
-.controlPad{
-  margin-top:6px;display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-template-rows:repeat(2,1fr);
-  gap:8px;width:80%;
-  flex:1;
-}
-.arrowBtn{
-  border-radius:12px;
-  border:2px solid transparent;
-  background-image:
-    linear-gradient(#111,#111),
-    linear-gradient(135deg,#0ff,#f0f,#ff0,#0f0,#08f,#f44,#4ff,#ff80bf);
-  background-origin:border-box;
-  background-clip:padding-box,border-box;
-  box-shadow:0 0 12px rgba(0,255,255,.4);
-  transition:all .2s;
-}
+button{background:#111;border:2px solid transparent;border-radius:10px;color:#0ff;padding:8px 12px;font-weight:bold;cursor:pointer;text-shadow:0 0 6px #0ff;transition:all .2s ease;-webkit-tap-highlight-color: transparent;background-image:linear-gradient(#111,#111),linear-gradient(90deg,#0ff,#f0f,#ff0,#0f0,#08f,#f44,#4ff,#ff80bf);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 0 12px #0ff inset,0 0 12px #0ff;}
+button:hover{background:#000;color:#fff;text-shadow:0 0 10px #fff;box-shadow:0 0 20px #0ff,0 0 30px #f0f,0 0 40px #ff0;}
+button:active{transform:scale(0.9);box-shadow:inset 0 0 15px #0ff,inset 0 0 25px #f0f;color:#0ff;}
+.controlPad{margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:8px;width:80%;flex:1;}
+.arrowBtn{border-radius:12px;border:2px solid transparent;background-image:linear-gradient(#111,#111),linear-gradient(135deg,#0ff,#f0f,#ff0,#0f0,#08f,#f44,#4ff,#ff80bf);background-origin:border-box;background-clip:padding-box,border-box;box-shadow:0 0 12px rgba(0,255,255,.4);transition:all .2s;}
 .arrowBtn:hover{box-shadow:0 0 18px #0ff,0 0 25px #f0f;}
 .arrowBtn:active{transform:scale(0.9);box-shadow:inset 0 0 15px #0ff,inset 0 0 25px #ff0;}
 .upBtn{grid-column:2;grid-row:1;}
@@ -90,6 +28,7 @@ button:active{
 #nextCanvas{background:#000;border-radius:6px;display:block;margin:auto;}
 .title{font-weight:bold;color:#f0f;text-align:center;margin-bottom:4px;}
 .small{font-size:12px;color:#ccc;text-align:center;}
+#cheatBox input{width:60px;}
 </style>
 </head>
 <body>
@@ -103,6 +42,12 @@ button:active{
         <button id="smileBtn">：)</button>
         <span class="small">分 <span id="score">0</span></span>
         <span class="small">行 <span id="lines">0</span></span>
+      </div>
+      <!-- 密碼輸入框 -->
+      <div id="cheatBox" style="display:none; margin-top:6px; text-align:center;">
+        <input type="password" id="cheatInput" placeholder="密碼" />
+        <button id="cheatConfirm">確定</button>
+        <div id="cheatMsg" style="color:red;font-size:12px;"></div>
       </div>
       <div class="controlPad">
         <button class="arrowBtn upBtn" id="upBtn" aria-label="旋轉"></button>
@@ -127,78 +72,103 @@ button:active{
 
 <script>
 (() => {
-  const COLS=10,ROWS=20,CELL=20;
-  const neonColors=["#0ff","#f0f","#ff0","#0f0","#08f","#f44","#4f4","#ff4","#4ff","#ff80bf"];
-  const SHAPES={I:[[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]]],
-    J:[[[1,0,0],[1,1,1],[0,0,0]]],
-    L:[[[0,0,1],[1,1,1],[0,0,0]]],
-    O:[[[1,1],[1,1]]],
-    S:[[[0,1,1],[1,1,0],[0,0,0]]],
-    T:[[[0,1,0],[1,1,1],[0,0,0]]],
-    Z:[[[1,1,0],[0,1,1],[0,0,0]]]};
-  function randColor(){return neonColors[Math.floor(Math.random()*neonColors.length)];}
-  function makeBag(){let p=Object.keys(SHAPES),bag=[];while(bag.length<p.length){let t=p[Math.floor(Math.random()*p.length)];if(!bag.some(b=>b.type===t)) bag.push({type:t,color:randColor()});}return bag;}
-  let board=[],current=null,nextQueue=[],score=0,lines=0,dropInterval=1000,lastDrop=0,running=false,paused=false,cheat=false,clearing=[];
-  const ctx=document.getElementById("board").getContext("2d"),nctx=document.getElementById("nextCanvas").getContext("2d");
-  const scoreEl=document.getElementById("score"),linesEl=document.getElementById("lines");
-  const highscoresEl=document.getElementById("highscores");
+const COLS=10,ROWS=20,CELL=20;
+const neonColors=["#0ff","#f0f","#ff0","#0f0","#08f","#f44","#4f4","#ff4","#4ff","#ff80bf"];
+const SHAPES={I:[[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]]],J:[[[1,0,0],[1,1,1],[0,0,0]]],L:[[[0,0,1],[1,1,1],[0,0,0]]],O:[[[1,1],[1,1]]],S:[[[0,1,1],[1,1,0],[0,0,0]]],T:[[[0,1,0],[1,1,1],[0,0,0]]],Z:[[[1,1,0],[0,1,1],[0,0,0]]]};
+function randColor(){return neonColors[Math.floor(Math.random()*neonColors.length)];}
+function makeBag(){let p=Object.keys(SHAPES),bag=[];while(bag.length<p.length){let t=p[Math.floor(Math.random()*p.length)];if(!bag.some(b=>b.type===t)) bag.push({type:t,color:randColor()});}return bag;}
 
-  function createBoard(){board=Array.from({length:ROWS},()=>Array(COLS).fill(0));}
-  function drawCell(x,y,color){ctx.fillStyle=color;ctx.fillRect(x*CELL,y*CELL,CELL,CELL);ctx.shadowColor=color;ctx.shadowBlur=10;ctx.fillRect(x*CELL,y*CELL,CELL,CELL);ctx.shadowBlur=0;}
-  function drawBoard(){
-    ctx.fillStyle="#000";ctx.fillRect(0,0,COLS*CELL,ROWS*CELL);
-    for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){
-      if(board[r][c]){
-        if(clearing.includes(r)){ 
-          if(Date.now()%200<100){drawCell(c,r,"#fff");}
-        }else{drawCell(c,r,board[r][c]);}
-      }
-    }
-    if(current)drawPiece(current,current.color);
+let board=[],current=null,nextQueue=[],score=0,lines=0,dropInterval=1000,lastDrop=0,running=false,paused=false,cheat=false;
+let clearingRows=[],clearFrame=0;
+
+const ctx=document.getElementById("board").getContext("2d"),
+      nctx=document.getElementById("nextCanvas").getContext("2d"),
+      scoreEl=document.getElementById("score"),
+      linesEl=document.getElementById("lines"),
+      highscoresEl=document.getElementById("highscores");
+
+function createBoard(){board=Array.from({length:ROWS},()=>Array(COLS).fill(0));}
+function drawCell(x,y,color){ctx.fillStyle=color;ctx.fillRect(x*CELL,y*CELL,CELL,CELL);ctx.shadowColor=color;ctx.shadowBlur=10;ctx.fillRect(x*CELL,y*CELL,CELL,CELL);ctx.shadowBlur=0;}
+function drawBoard(){
+  ctx.fillStyle="#000";ctx.fillRect(0,0,COLS*CELL,ROWS*CELL);
+  for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++){if(board[r][c])drawCell(c,r,board[r][c]);}
+  if(current)drawPiece(current,current.color);
+  animateClear();
+}
+function drawPiece(p,color){for(let r=0;r<p.shape.length;r++)for(let c=0;c<p.shape[r].length;c++){if(p.shape[r][c]){let y=p.y+r,x=p.x+c;if(y>=0)drawCell(x,y,color);}}}
+function collides(y,x,shape){for(let r=0;r<shape.length;r++)for(let c=0;c<shape[r].length;c++){if(shape[r][c]){let ny=y+r,nx=x+c;if(nx<0||nx>=COLS||ny>=ROWS)return true;if(ny>=0&&board[ny][nx])return true;}}return false;}
+function spawn(){if(nextQueue.length<2)nextQueue.push(...makeBag());let nxt=nextQueue.shift();current={type:nxt.type,shape:SHAPES[nxt.type][0].map(s=>s.slice()),x:3,y:-2,color:nxt.color};if(collides(current.y,current.x,current.shape))gameOver();drawNext();}
+function lock(){for(let r=0;r<current.shape.length;r++)for(let c=0;c<current.shape[r].length;c++){if(current.shape[r][c]){let y=current.y+r,x=current.x+c;if(y<0){gameOver();return;}board[y][x]=current.color;}}clearLines();spawn();}
+function drop(){if(!collides(current.y+1,current.x,current.shape))current.y++;else lock();}
+function rotate(){let s=current.shape[0].map((_,i)=>current.shape.map(row=>row[i]).reverse());if(!collides(current.y,current.x,s))current.shape=s;}
+
+// 消除行（保留動畫）
+function clearLines(){
+  let toClear = [];
+  for(let r=0;r<ROWS;r++){if(board[r].every(cell=>cell))toClear.push(r);}
+  if(toClear.length){
+    clearingRows = toClear;
+    clearFrame=0;
   }
-  function drawPiece(p,color){for(let r=0;r<p.shape.length;r++)for(let c=0;c<p.shape[r].length;c++){if(p.shape[r][c]){let y=p.y+r,x=p.x+c;if(y>=0)drawCell(x,y,color);}}}
-  function collides(y,x,shape){for(let r=0;r<shape.length;r++)for(let c=0;c<shape[r].length;c++){if(shape[r][c]){let ny=y+r,nx=x+c;if(nx<0||nx>=COLS||ny>=ROWS)return true;if(ny>=0&&board[ny][nx])return true;}}return false;}
-  function spawn(){if(nextQueue.length<2)nextQueue.push(...makeBag());let nxt=nextQueue.shift();current={type:nxt.type,shape:SHAPES[nxt.type][0].map(s=>s.slice()),x:3,y:-2,color:nxt.color};if(collides(current.y,current.x,current.shape))gameOver();drawNext();}
-  function lock(){for(let r=0;r<current.shape.length;r++)for(let c=0;c<current.shape[r].length;c++){if(current.shape[r][c]){let y=current.y+r,x=current.x+c;if(y<0){gameOver();return;}board[y][x]=current.color;}}clearLines();spawn();}
-  function drop(){if(!collides(current.y+1,current.x,current.shape))current.y++;else lock();}
-  function clearLines(){let toClear=[];for(let r=ROWS-1;r>=0;r--){if(board[r].every(v=>v)){toClear.push(r);}}if(toClear.length){clearing=toClear;setTimeout(()=>{toClear.forEach(r=>{board.splice(r,1);board.unshift(Array(COLS).fill(0));});lines+=toClear.length;score+=toClear.length*100;dropInterval=Math.max(200,1000-Math.floor(lines/10)*50);clearing=[];},300);}}
-  function rotate(){let s=current.shape[0].map((_,i)=>current.shape.map(row=>row[i]).reverse());if(!collides(current.y,current.x,s))current.shape=s;}
-  function gameOver(){running=false;alert("Game Over! 分數:"+score);saveScore(score);createBoard();renderScores();}
-  function loop(t){if(!running||paused){requestAnimationFrame(loop);return;}if(!lastDrop)lastDrop=t;if(t-lastDrop>dropInterval){drop();lastDrop=t;}drawBoard();scoreEl.textContent=score;linesEl.textContent=lines;requestAnimationFrame(loop);}
-  function drawNext(){nctx.fillStyle="#000";nctx.fillRect(0,0,nctx.canvas.width,nctx.canvas.height);let next=nextQueue[0];let shape=SHAPES[next.type][0];let color=next.color;for(let r=0;r<shape.length;r++)for(let c=0;c<shape[r].length;c++){if(shape[r][c]){nctx.fillStyle=color;nctx.shadowColor=color;nctx.shadowBlur=10;nctx.fillRect(c*20+20,r*20+20,20,20);nctx.shadowBlur=0;}}}
-  
-  // 分數存取
-  function loadScores(){return JSON.parse(localStorage.getItem("tetrisScores")||"[]");}
-  function saveScore(s){let scores=loadScores();scores.push(s);scores.sort((a,b)=>b-a);scores=scores.slice(0,5);localStorage.setItem("tetrisScores",JSON.stringify(scores));}
-  function renderScores(){let scores=loadScores();highscoresEl.innerHTML="";scores.forEach(s=>{let li=document.createElement("li");li.textContent=s;highscoresEl.appendChild(li);});}
-  renderScores();
-  document.getElementById("clearScores").onclick=()=>{localStorage.removeItem("tetrisScores");renderScores();};
+}
 
-  document.getElementById("startBtn").onclick=()=>{createBoard();score=0;lines=0;nextQueue=makeBag();spawn();running=true;paused=false;lastDrop=0;requestAnimationFrame(loop);};
-  document.getElementById("pauseBtn").onclick=()=>{if(running)paused=!paused;};
-  document.getElementById("smileBtn").onclick=()=>{let p=prompt("請輸入密碼");if(p==="密碼"){cheat=true;alert("外掛啟用! 點棋盤可放置小方塊");}else{alert("密碼錯誤");}};
-  
-  // 外掛放置
-  document.getElementById("board").onclick=(e)=>{
-    if(!cheat) return;
-    let rect=e.target.getBoundingClientRect();
-    let x=Math.floor((e.clientX-rect.left)/CELL),
-        y=Math.floor((e.clientY-rect.top)/CELL);
-    if(y>=0&&y<ROWS&&x>=0&&x<COLS){
-      if(!board[y][x]){
-        board[y][x]=randColor();
-        clearLines();
-        drawBoard();
-      }
+function animateClear(){
+  if(clearingRows.length===0) return;
+  clearFrame++;
+  clearingRows.forEach(r=>{
+    for(let c=0;c<COLS;c++){
+      if(clearFrame%10<5) drawCell(c,r,"#fff");
+      else drawCell(c,r,board[r][c]);
     }
-  };
+  });
+  if(clearFrame>30){
+    clearingRows.forEach(r=>{
+      board.splice(r,1);
+      board.unshift(Array(COLS).fill(0));
+    });
+    score += clearingRows.length*100;
+    lines += clearingRows.length;
+    clearingRows=[];
+  }
+}
 
-  // 控制
-  document.getElementById("upBtn").onclick=()=>{if(running&&current){rotate();}};
-  function hold(el,fn){let t;el.addEventListener("pointerdown",()=>{fn();t=setInterval(fn,100);});document.addEventListener("pointerup",()=>clearInterval(t));}
-  hold(document.getElementById("leftBtn"),()=>{if(running&&current&&!collides(current.y,current.x-1,current.shape))current.x--;});
-  hold(document.getElementById("rightBtn"),()=>{if(running&&current&&!collides(current.y,current.x+1,current.shape))current.x++;});
-  hold(document.getElementById("downBtn"),()=>{if(running&&current)drop();});
+// 分數排行榜
+function loadScores(){return JSON.parse(localStorage.getItem("tetrisScores")||"[]");}
+function saveScore(s){let scores=loadScores();scores.push(s);scores.sort((a,b)=>b-a);scores=scores.slice(0,5);localStorage.setItem("tetrisScores",JSON.stringify(scores));}
+function renderScores(){let scores=loadScores();highscoresEl.innerHTML="";scores.forEach(s=>{let li=document.createElement("li");li.textContent=s;highscoresEl.appendChild(li);});}
+renderScores();
+document.getElementById("clearScores").onclick=()=>{localStorage.removeItem("tetrisScores");renderScores()}
+
+function gameOver(){running=false;alert("Game Over! 分數:"+score);saveScore(score);renderScores();createBoard();drawBoard();}
+
+// 下一個方塊
+function drawNext(){nctx.fillStyle="#000";nctx.fillRect(0,0,nctx.canvas.width,nctx.canvas.height);let next=nextQueue[0];let shape=SHAPES[next.type][0];let color=next.color;for(let r=0;r<shape.length;r++)for(let c=0;c<shape[r].length;c++){if(shape[r][c]){nctx.fillStyle=color;nctx.shadowColor=color;nctx.shadowBlur=10;nctx.fillRect(c*20+20,r*20+20,20,20);nctx.shadowBlur=0;}}}
+
+// 控制與外掛
+document.getElementById("startBtn").onclick=()=>{createBoard();score=0;lines=0;nextQueue=makeBag();spawn();running=true;paused=false;lastDrop=0;requestAnimationFrame(loop);};
+document.getElementById("pauseBtn").onclick=()=>{if(running)paused=!paused;};
+document.getElementById("smileBtn").onclick=()=>{let box=document.getElementById("cheatBox");box.style.display=(box.style.display==="none")?"block":"none";document.getElementById("cheatMsg").textContent="";}
+document.getElementById("cheatConfirm").onclick = () => {
+  let p = document.getElementById("cheatInput").value;
+  let msg = document.getElementById("cheatMsg");
+  if(p==="sean990524"){cheat=true;msg.style.color="lime";msg.textContent="外掛已啟用! 點棋盤可放置方塊";}
+  else{msg.style.color="red";msg.textContent="密碼錯誤";}
+}
+document.getElementById("board").onclick=(e)=>{
+  if(!cheat) return;
+  let rect=e.target.getBoundingClientRect();
+  let x=Math.floor((e.clientX-rect.left)/CELL),y=Math.floor((e.clientY-rect.top)/CELL);
+  if(y>=0&&y<ROWS&&x>=0&&x<COLS){if(!board[y][x]){board[y][x]=randColor();clearLines();drawBoard();}}
+}
+
+// 按鈕控制
+document.getElementById("upBtn").onclick=()=>{if(running&&current)rotate();};
+function hold(el,fn){let t;el.addEventListener("pointerdown",()=>{fn();t=setInterval(fn,100);});document.addEventListener("pointerup",()=>clearInterval(t));}
+hold(document.getElementById("leftBtn"),()=>{if(running&&current&&!collides(current.y,current.x-1,current.shape))current.x--;});
+hold(document.getElementById("rightBtn"),()=>{if(running&&current&&!collides(current.y,current.x+1,current.shape))current.x++;});
+hold(document.getElementById("downBtn"),()=>{if(running&&current)drop();});
+
+function loop(t){if(!running||paused){requestAnimationFrame(loop);return;}if(!lastDrop)lastDrop=t;if(t-lastDrop>dropInterval){drop();lastDrop=t;}drawBoard();scoreEl.textContent=score;linesEl.textContent=lines;requestAnimationFrame(loop);}
 })();
 </script>
 </body>
